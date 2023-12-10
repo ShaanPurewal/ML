@@ -22,11 +22,16 @@ func printModel(model *Model, verbose bool) {
 	}
 }
 
-func createModel(weightRangeStart float64, weightRangeEnd float64, activation string, shape ...int) Model {
+func createModel(weightRangeStart float64, weightRangeEnd float64, activation string, outputActivation string, shape ...int) Model {
 	var _layers []Layer
 
 	for i := 1; i < len(shape); i++ {
-		_layers = append(_layers, initLayer(shape[i-1], shape[i], weightRangeStart, weightRangeEnd, activation))
+		_activation := activation
+		if i == len(shape)-1 {
+			_activation = outputActivation
+		}
+
+		_layers = append(_layers, initLayer(shape[i-1], shape[i], weightRangeStart, weightRangeEnd, _activation))
 	}
 
 	return Model{

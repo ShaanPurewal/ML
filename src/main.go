@@ -8,16 +8,15 @@ const (
 	defaultWeightRangeStart = -1
 	defaultWeightRangeEnd   = 1
 
-	defaultActivation = "ReLU"
+	defaultActivation       = "ReLU"
+	defualtOutputActivation = "softmax"
 )
 
 func main() {
-	defaultModel := createModel(defaultWeightRangeStart, defaultWeightRangeEnd, defaultActivation, 1, 5, 5, 1)
+	defaultModel := createModel(defaultWeightRangeStart, defaultWeightRangeEnd, defaultActivation, defualtOutputActivation, 1, 5, 5, 5)
 
 	manualLayers := []Layer{
-		initLayer(1, 5, defaultWeightRangeStart, defaultWeightRangeEnd, defaultActivation),
-		initLayer(5, 5, defaultWeightRangeStart, defaultWeightRangeEnd, defaultActivation),
-		initLayer(5, 1, defaultWeightRangeStart, defaultWeightRangeEnd, defaultActivation),
+		initLayer(1, 5, defaultWeightRangeStart, defaultWeightRangeEnd, "softmax"),
 	}
 	manualModel := Model{
 		layers: manualLayers,

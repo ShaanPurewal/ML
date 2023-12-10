@@ -7,10 +7,9 @@ func forward(inputs []float64, model *Model) []float64 {
 		var outputs []float64
 
 		for _, node := range _layer.weights {
-			var result float64 = calculateNode(node, _current)
-			outputs = append(outputs, activate(_layer.activation, result))
+			outputs = append(outputs, calculateNode(node, _current))
 		}
-		_current = outputs
+		_current = activate(_layer.activation, outputs)
 	}
 
 	return _current
