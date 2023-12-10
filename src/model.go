@@ -15,8 +15,8 @@ func printModel(model *Model, verbose bool) {
 
 		if len(_layer.weights) > 0 && verbose {
 			fmt.Println(spacing, spacing, "Weights:")
-			for _, row := range _layer.weights {
-				fmt.Println(spacing, spacing, spacing, row)
+			for j, weight := range _layer.weights {
+				fmt.Println(spacing, spacing, spacing, weight, " Bias: ", _layer.biases[j])
 			}
 		}
 	}
@@ -41,6 +41,7 @@ func createModel(weightRangeStart float64, weightRangeEnd float64, activation st
 
 func initLayer(inputSize int, outputSize int, weightRangeStart float64, weightRangeEnd float64, activation string) Layer {
 	var _weights [][]float64
+	var _biases []float64
 
 	for j := 0; j < outputSize; j++ {
 		_weight := make([]float64, inputSize)
@@ -49,12 +50,15 @@ func initLayer(inputSize int, outputSize int, weightRangeStart float64, weightRa
 		for k := 0; k < inputSize; k++ {
 			_weights[j][k] = (weightRangeEnd-weightRangeStart)*rand.Float64() - weightRangeEnd
 		}
+
+		_biases = append(_biases, (weightRangeEnd-weightRangeStart)*rand.Float64()-weightRangeEnd)
 	}
 
 	return Layer{
 		inputSize:  inputSize,
 		outputSize: outputSize,
 		weights:    _weights,
+		biases:     _biases,
 		activation: activation,
 	}
 }

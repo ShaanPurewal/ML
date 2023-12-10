@@ -14,6 +14,7 @@ type Layer struct {
 	outputSize int
 
 	weights [][]float64
+	biases  []float64
 
 	activation string
 }
@@ -39,7 +40,7 @@ func activate(activationFunction string, values []float64) []float64 {
 	}
 
 	if strings.EqualFold(activationFunction, "softmax") {
-		for i, _ := range results {
+		for i := range results {
 			results[i] /= sum
 		}
 	}

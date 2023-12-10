@@ -6,8 +6,8 @@ func forward(inputs []float64, model *Model) []float64 {
 	for _, _layer := range model.layers {
 		var outputs []float64
 
-		for _, node := range _layer.weights {
-			outputs = append(outputs, calculateNode(node, _current))
+		for i, node := range _layer.weights {
+			outputs = append(outputs, calculateNode(node, _current)+_layer.biases[i])
 		}
 		_current = activate(_layer.activation, outputs)
 	}

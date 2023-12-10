@@ -13,16 +13,16 @@ const (
 )
 
 func main() {
-	defaultModel := createModel(defaultWeightRangeStart, defaultWeightRangeEnd, defaultActivation, defualtOutputActivation, 1, 5, 5, 5)
+	defaultModel := createModel(defaultWeightRangeStart, defaultWeightRangeEnd, defaultActivation, defualtOutputActivation, 1, 5)
 
 	manualLayers := []Layer{
-		initLayer(1, 5, defaultWeightRangeStart, defaultWeightRangeEnd, "softmax"),
+		initLayer(1, 1, defaultWeightRangeStart, defaultWeightRangeEnd, "softmax"),
 	}
 	manualModel := Model{
 		layers: manualLayers,
 	}
 
-	var verbose bool = false
+	var verbose bool = true
 	printModel(&defaultModel, verbose)
 	printModel(&manualModel, verbose)
 
