@@ -48,7 +48,7 @@ func initLayer(inputSize int, outputSize int, weightRangeStart float64, weightRa
 		_weights = append(_weights, _weight)
 
 		for k := 0; k < inputSize; k++ {
-			_weights[j][k] = (weightRangeEnd-weightRangeStart)*rand.Float64() - weightRangeEnd
+			_weights[j][k] = (weightRangeEnd-weightRangeStart)*rand.Float64() + weightRangeStart
 		}
 
 		_biases = append(_biases, (weightRangeEnd-weightRangeStart)*rand.Float64()-weightRangeEnd)
